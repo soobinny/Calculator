@@ -1,13 +1,15 @@
 package calculator;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
 
     public static void main(String[] args) {
 
-        int [] arr = new int [10];
-        int count = 0; // 배열 인덱스 카운트
+        List<Integer> resultArr = new ArrayList<>(); // List Framework 사용
+
+//        int [] arr = new int [10];
+//        int count = 0; // 배열 인덱스 카운트
 
         Scanner sc = new Scanner(System.in);
 
@@ -44,13 +46,19 @@ public class App {
                 }
             }
 
-            if(count < arr.length) { // 배열 길이 (10)을 넘지 않아야 함
-                arr[count] = result;
-                count++; // 인덱스 카운트 증가
-            }else{
-                for(int i = 1; i < arr.length; i++){
-                    arr[i-1] = arr[i];
-                }arr[9] =  result;
+//            if(count < arr.length) { // 배열 길이 (10)을 넘지 않아야 함
+//                arr[count] = result;
+//                count++; // 인덱스 카운트 증가
+//            }else{
+//                for(int i = 1; i < arr.length; i++){
+//                    arr[i-1] = arr[i];
+//                }arr[9] =  result;
+//            }
+            resultArr.add(result);
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            String remove = sc.next();
+            if (remove.equals("remove")) {
+                resultArr.remove(0);
             }
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
