@@ -6,8 +6,11 @@ public class App {
 
     public static void main(String[] args) {
 
-        Calculator calculator = new Calculator(); // 2-2) Calculator 인스턴스 생성
+//        Calculator calculator = new Calculator(); // 2-2) Calculator 인스턴스 생성
         Scanner sc = new Scanner(System.in);
+
+        CircleCalculator circle = new CircleCalculator();
+        ArithmeticCalculator arithmeticCalculator = new ArithmeticCalculator();
 
         while(true){
 
@@ -15,13 +18,12 @@ public class App {
             System.out.print("원의 넓이 구하기 (Circle) 혹은 사칙 연산 (Calculator) 중 선택하여 입력하세요: ");
             String input = sc.nextLine();
 
-
             if (input.equals("Circle")) {
                 System.out.print("원의 반지름을 입력하세요 : ");
                 double radius = sc.nextDouble();
                 sc.nextLine();
-                calculator.calculateCircleArea(radius);
-                calculator.inquiryArea();
+                circle.calculateCircleArea(radius);
+                circle.inquiryArea();
 
             }else if (input.equals("Calculator")) {
                 while (true) {
@@ -37,22 +39,23 @@ public class App {
                     // 사칙연산 기호를 적합한 타입으로 선언한 변수에 저장합니다.
                     char operator = sc.next().charAt(0);
 
-                    int result = calculator.calculate(num1, num2, operator);
+                    double result = arithmeticCalculator.calculate(num1, num2, operator);
 
                     System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
                     String remove = sc.next();
                     if (remove.equals("remove")) {
-                        calculator.removeResult();
+                        arithmeticCalculator.removeResult();
                     }
 
                     System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                     String inquiry = sc.next();
                     if (inquiry.equals("inquiry")) {
-                        calculator.inquiryResult();
+                        arithmeticCalculator.inquiryResult();
                     }
 
                     System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
                     String exit = sc.next();
+                    sc.nextLine();
                     if (exit.equals("exit")) {
                         break;
                     }
