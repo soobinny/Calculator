@@ -5,28 +5,42 @@ import java.util.List;
 
 public class ArithmeticCalculator extends Calculator {
 
-    public double calculate(int num1, int num2, char operator) {
+    /*
+    * 2-9 ) 연산 클래스 변수로 선언, 생성자 초기화
+    * */
+    private AddOperator add;
+    private SubtractOperator sub;
+    private MultiplyOperator mul;
+    private DivideOperator div;
+
+    public ArithmeticCalculator() {
+        add = new AddOperator();
+        sub = new SubtractOperator();
+        mul = new MultiplyOperator();
+        div = new DivideOperator();
+    }
+    public double calculate(double num1, double num2, char operator) {
 
         double result = 0;
 
         switch (operator) {
             case '+':
-                result = num1 + num2;
+                result = add.operate(num1, num2);
                 break;
 
             case '-':
-                result = num1 - num2;
+                result = sub.operate(num1,num2);
                 break;
 
             case '*':
-                result = num1 * num2;
+                result = mul.operate(num1,num2);
                 break;
 
             case '/':
                 if (num2 == 0) {
                     throw new ArithmeticException("0으로 나눌 수 없습니다.");
                 }
-                result = num1 / num2;
+                result = div.operate(num1,num2);
                 break;
 
             default:

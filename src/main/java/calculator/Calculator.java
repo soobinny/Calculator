@@ -15,6 +15,8 @@ public class Calculator {
         areaArr = new ArrayList<>();
     }
 
+
+
     }
 
 
