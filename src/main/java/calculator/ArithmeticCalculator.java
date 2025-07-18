@@ -1,7 +1,9 @@
 package calculator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ArithmeticCalculator extends Calculator {
 
@@ -12,43 +14,35 @@ public class ArithmeticCalculator extends Calculator {
     private SubtractOperator sub;
     private MultiplyOperator mul;
     private DivideOperator div;
+    private ModOperator mod;
+
+    //2-10
+    private Map<Character, Operator> opMap; // OCP // HashMap 생성 : Key는 Character, Value는 Operator
 
     public ArithmeticCalculator() {
-        add = new AddOperator();
-        sub = new SubtractOperator();
-        mul = new MultiplyOperator();
-        div = new DivideOperator();
+
+        opMap = new HashMap<>();
+
+        opMap.put('+', new AddOperator());
+        opMap.put('-', new SubtractOperator());
+        opMap.put('*', new MultiplyOperator());
+        opMap.put('/', new DivideOperator());
+        opMap.put('%', new ModOperator());
     }
     public double calculate(double num1, double num2, char operator) {
 
-        double result = 0;
+        //2-10
+        Operator op = opMap.get(operator); // 연산자 문자에 해당하는 Operator 객체를 맵에서 꺼냄
 
-        switch (operator) {
-            case '+':
-                result = add.operate(num1, num2);
-                break;
+        if (op == null) {
+            throw new IllegalArgumentException("잘못된 연산자입니다.");// 맵에 없는 연산자인 경우 예외 발생
 
-            case '-':
-                result = sub.operate(num1,num2);
-                break;
+        }else{
+            double result = op.operate(num1, num2); // 연산 수행 및 결과 저장
 
-            case '*':
-                result = mul.operate(num1,num2);
-                break;
-
-            case '/':
-                if (num2 == 0) {
-                    throw new ArithmeticException("0으로 나눌 수 없습니다.");
-                }
-                result = div.operate(num1,num2);
-                break;
-
-            default:
-                throw new IllegalArgumentException("잘못된 연산자입니다.");
-
+            calcArr.add(result);
+            return result;
         }
-        calcArr.add(result);
-        return result;
     }
 
     public List<Double> getResultArr() { // 2-3 ) 캡슐화 - Getter 메서드 구현
