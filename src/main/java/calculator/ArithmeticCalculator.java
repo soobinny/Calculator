@@ -48,6 +48,14 @@ public class ArithmeticCalculator<T extends Number> extends Calculator {
         }
     }
 
+    //3-3 : 메서드에서 입력받은 수보다 큰 수 출력 & 오름차순 출력(추가구현) - Lamda&Stream 구현
+    public void printResultsAboveSorted(double value) {
+        calcArr.stream()
+                .filter(result -> result > value)
+                .sorted()
+                .forEach(System.out::println);
+    }
+
     public List<Double> getResultArr() { // 2-3 ) 캡슐화 - Getter 메서드 구현
         return calcArr;
     }

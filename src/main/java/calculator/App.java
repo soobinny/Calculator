@@ -57,7 +57,18 @@ public class App {
                         System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                         String inquiry = sc.next();
                         if (inquiry.equals("inquiry")) {
-                            arithmeticCalculator.inquiryResult();
+
+                            //3-3) 특정 값보다 큰 값 오름차순 조회
+                            System.out.println("특정 값보다 큰 값을 오름차순으로 조회하시겠습니까? (yes 입력 시 조회)");
+                            String yes = sc.next();
+                            if(yes.equals("yes")){
+                                System.out.print("기준 값을 입력하세요 : ");
+                                double val  = sc.nextDouble();
+                                arithmeticCalculator.printResultsAboveSorted(val);
+                            }else{
+                                arithmeticCalculator.inquiryResult();
+                            }
+
                         }
 
                         System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
