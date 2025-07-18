@@ -4,6 +4,7 @@
 - IDE: **IntelliJ IDEA**
 
 
+
 ## 프로젝트 개요
 
 Java와 객체지향 설계 원칙(SOLID)을 기반으로 구현한  
@@ -16,10 +17,12 @@ Java와 객체지향 설계 원칙(SOLID)을 기반으로 구현한
 - 주요 키워드: `상속`, `다형성`, `캡슐화`, `인터페이스`, `HashMap`
 
 
+
 ## 브랜치 구조
 
 main: Level1 (기본 기능 구현)
 LEVEL2: Level2 (객체지향 설계 원칙 적용 및 구조 개선)
+
 
 
 ## 주요 기능
@@ -32,6 +35,7 @@ LEVEL2: Level2 (객체지향 설계 원칙 적용 및 구조 개선)
 - 예외 처리 (`0으로 나누기`, `잘못된 연산자`, `잘못된 메뉴 입력`)
 
 
+
 ## 객체지향 설계 원칙 적용
 
 1. SRP (단일 책임 원칙): 연산자별 클래스 분리
@@ -40,12 +44,14 @@ LEVEL2: Level2 (객체지향 설계 원칙 적용 및 구조 개선)
 4. 다형성: Operator 인터페이스를 통해 다양한 연산자 클래스 공통 처리 가능
 
 
+
 ## 학습 포인트
 
 - `HashMap<Character, Operator>` 구조를 통해 연산자 기호(`+`, `-`, `*`, `/`, `%`)와 클래스 매핑
 - 연산 클래스들의 `operate()` 메서드 통일로 다형성 활용
 - 클래스 분리 설계 (`연산자 클래스` ↔ `계산기 클래스`)를 통한 책임 분산
 - IllegalArgumentException, ArithmeticException 등을 활용한 예외 처리 방식 학습
+
 
 
 ## 클래스 구조
@@ -61,6 +67,7 @@ calculator/
 ├── MultiplyOperator.java     : 곱셈 클래스
 ├── DivideOperator.java       : 나눗셈 클래스
 └── ModOperator.java          : 나머지 연산 클래스
+
 
 
 ## 트러블슈팅
