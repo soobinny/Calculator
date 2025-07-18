@@ -5,7 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ArithmeticCalculator extends Calculator {
+// 3-2) Number타입 제네릭 클래스 구현
+public class ArithmeticCalculator<T extends Number> extends Calculator {
 
     /*
     * 2-9 ) 연산 클래스 변수로 선언, 생성자 초기화
@@ -28,7 +29,10 @@ public class ArithmeticCalculator extends Calculator {
         opMap.put(OperatorType.DIVIDE, new DivideOperator());
         opMap.put(OperatorType.MOD, new ModOperator());
     }
-    public double calculate(double num1, double num2, char operator) {
+    public double calculate(T num1, T num2, char operator) {
+
+        double gen1 = num1.doubleValue(); // 3-2) num1, num2을 실수형으로 타입 변환 (제네릭)
+        double gen2 = num2.doubleValue();
 
         OperatorType operatorType = OperatorType.fromSymbol(operator); // char operator를 enum으로 변환
         Operator op = opMap.get(operatorType); // 연산자 문자에 해당하는 Operator 객체를 맵에서 꺼냄
@@ -37,7 +41,7 @@ public class ArithmeticCalculator extends Calculator {
             throw new IllegalArgumentException("잘못된 연산자입니다.");// 맵에 없는 연산자인 경우 예외 발생
 
         }else{
-            double result = op.operate(num1, num2); // 연산 수행 및 결과 저장
+            double result = op.operate(gen1, gen2); // 연산 수행 및 결과 저장
 
             calcArr.add(result);
             return result;
