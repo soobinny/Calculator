@@ -16,23 +16,22 @@ public class ArithmeticCalculator extends Calculator {
     private DivideOperator div;
     private ModOperator mod;
 
-    //2-10
-    private Map<Character, Operator> opMap; // OCP // HashMap 생성 : Key는 Character, Value는 Operator
+    private Map<OperatorType, Operator> opMap; // 3-1) HashMap의 key: OperatorType enum으로 할당
 
     public ArithmeticCalculator() {
 
         opMap = new HashMap<>();
 
-        opMap.put('+', new AddOperator());
-        opMap.put('-', new SubtractOperator());
-        opMap.put('*', new MultiplyOperator());
-        opMap.put('/', new DivideOperator());
-        opMap.put('%', new ModOperator());
+        opMap.put(OperatorType.PLUS, new AddOperator());
+        opMap.put(OperatorType.MINUS, new SubtractOperator());
+        opMap.put(OperatorType.MULTIPLY, new MultiplyOperator());
+        opMap.put(OperatorType.DIVIDE, new DivideOperator());
+        opMap.put(OperatorType.MOD, new ModOperator());
     }
     public double calculate(double num1, double num2, char operator) {
 
-        //2-10
-        Operator op = opMap.get(operator); // 연산자 문자에 해당하는 Operator 객체를 맵에서 꺼냄
+        OperatorType operatorType = OperatorType.fromSymbol(operator); // char operator를 enum으로 변환
+        Operator op = opMap.get(operatorType); // 연산자 문자에 해당하는 Operator 객체를 맵에서 꺼냄
 
         if (op == null) {
             throw new IllegalArgumentException("잘못된 연산자입니다.");// 맵에 없는 연산자인 경우 예외 발생
